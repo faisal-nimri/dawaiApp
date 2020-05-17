@@ -1,0 +1,30 @@
+dawai: Project 
+    pychache -> chaching (interpreted vs complied) 
+    compiled: faster -> closer to hardware level (convert to machine code then run code) 
+    interpreted: slower -> line by line (high level language) 
+
+    settings.py -> added: email-config/apps -> dawaiApp/ debug-> true / static Url
+
+dawaiApp: APPLICATION (Part of Project dawai)
+    templates -> html (jinja) = engine to allow writing pyhton in html code 
+    static -> css/ images/ js
+    views -> render html (connection between backend and frontend),(connection between DB and backend)
+    models -> DB 
+    test -> test cases (server test "predefined cases")
+    admin.py -> register a model in the admin page (take the model from models and add them into admin page.)
+    urls -> associate links (urls) with predefined views (call functions to render html pages from views)
+
+manage.py: runserver/ make migrations: create migrations *.py / migrate: apply *.py to the DB 
+
+db.sqllite3: applied migrations (DB).
+
+why SQLLITE not SQL? sqllite faster (lighter)....... no complex queires.......  easier migrations.
+                     / other: more complex queries..... 
+
+
+
+start of the prject: 
+    home -> url null 
+        urls in Dawai project 
+        if not "/admin" go search in dawaiApp.urls and open page.
+    

@@ -1,0 +1,90 @@
+{% extends "template.html"%}
+  {% block content %}
+  <div class="modal" id="answer">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Answer This Question</h5> <button type="button" class="close" data-dismiss="modal"> <span>×</span> </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <form class="form-inline" method="POST" action="/pharmacy/questions">
+                {% csrf_token %} 
+                <input type="hidden" name="qid" value="" id="qid">
+                <div class="form-group row">
+                  <div class="col-12"><textarea rows="4" cols="50" name="comment" class="w-100 h-25 mx-2" placeholder="Your Answer Here.........."></textarea></div>
+                </div>
+                <div class="modal-footer"> <input type="submit" value="Answer Question" class="btn btn-primary"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-3 fixed-top shadow-none bg-light" style="">
+    <div class="container" id="not">
+      <div class="row">
+        <div class="col-md-3"><a class="btn btn-primary btn-block" href="#notanswered">Not Answered:</a></div>
+        <div class="col-md-3"><a class="btn btn-primary btn-block" href="#answered">Answered:</a></div>
+        <div class="col-md-3"></div>
+        <div class="col-md-3"><a class="btn btn-primary btn-block" href="/pharmacy/logout">Logout.</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5" id="notanswered">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="display-4">Not Answered:&nbsp;</h1>
+          
+            {% for question in unanswered%}
+            <div class="card">
+              <div class="card-body">
+              <h5 class="card-title"><b>{{question.owner}}</b></h5><br>
+              <h5>Question</h5>
+              <p class="card-text">{{question.body}}</p><br>
+              <h5>Additional Information</h5>
+              <p class="card-text">{{question.info}}</p><img class="img-fluid d-block w-25 mb-2" src="{{ question.image}}" onclick="window.open('{{question.image}}', '_blank');">
+              <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#answer" onclick="fillmodal({{question.id}})">Answer This Question!</a>
+              </div>
+            </div>
+            {% endfor %}
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-3" id="answered">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="display-4">Answered:</h1>
+          
+              {% for question in answered%}
+              <div class="card">
+                <div class="card-body">
+                <h5 class="card-title"><b>{{question.owner}}</b></h5><br>
+                <h5>Question</h5>
+                <p class="card-text">{{question.body}}</p><br>
+                <h5>Additional Information.</h5>
+                <p class="card-text">{{question.info}}</p><br>
+                <h5>Answer</h5>
+                <p class="card-text">{{question.answer}}</p>
+                 </div>
+              </div>
+              {% endfor %}
+           
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  function fillmodal(qid){
+  document.getElementById("qid").value = qid;
+  }
+</script>
+
+{% endblock %}

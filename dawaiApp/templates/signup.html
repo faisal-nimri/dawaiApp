@@ -1,0 +1,28 @@
+{% extends "template.html"%}
+{% block content %}
+
+
+  <div class="py-5 text-center" style="	background-image: url(/static/images/87f893476ee5b6a00e0b2a1bc1f33f6b.jpg);	background-position: top left;	background-size: 100%;	background-repeat: repeat;">
+    <div class="container">
+      <div class="row text-white w-100" style="">
+        <div class="mx-auto col-lg-6 col-10" style="	background-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8));	background-position: top left;	background-size: 100%;	background-repeat: repeat;">
+          <h1>Sign Up</h1>
+          <form class="text-left" action = "/signup" method = "POST">
+             {% csrf_token %}
+            <div class="form-group"> <label for="form16">Your First Name</label> <input type="text" class="form-control" name = "firstName" placeholder="Faisal"> </div>
+            <div class="form-group"> <label for="form17">Your Last Name</label> <input type="text" class="form-control" name  = "lastName" placeholder="Nimri"> </div>
+            <div class="form-group"> <label for="form18">Your email</label> <input type="email" class="form-control" name = "email" placeholder="faisal@dawai.com"> </div>
+            <div class="form-row">
+              <div class="form-group col-md-6"> <label for="form19">Password</label> <input type="password" class="form-control" name="password" placeholder="••••"> </div>
+              <div class="form-group col-md-6"> <label for="form20">Confirm Password</label> <input type="password" class="form-control" name="passwordConf" placeholder="••••"> </div>
+            </div>
+            <h4 style="color: {{color}}; background: white">{{message}}</h4>
+            <button type="submit" class="btn btn-primary">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

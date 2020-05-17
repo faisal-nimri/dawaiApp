@@ -1,0 +1,116 @@
+{% extends 'template.html' %}
+{% block content %}
+
+  <div class="py-5 border border-primary">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-3"><i class="fa fa-5x fa-user"></i></div>
+            <div class="col-md-3">
+              <h3 class="my-3">{{fname}} {{lname}}</h3>
+            </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3"><label class="my-2">Messages</label><a href="/answers"><i class="fa fa-commenting-o fa-3x pull-left"></i></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <form method="POST" action ="/edit/firstname">
+  {% csrf_token %}
+    <div class="py-3 border-primary border-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <h3 class="">First Name:</h3>
+          </div>
+          <div class="col-md-3">
+            <h4 class="">{{fname}}</h4>
+          </div>
+          
+            <div class="col-md-3">
+            <div class="form-group"><input type="text" name="fname" class="form-control" placeholder="Edit First Name:"></div>
+            </div>
+            <div class="col-md-3"><input type = "submit" value = "Edit" class="btn btn-primary"></div>
+          
+        </div>
+      </div>
+    </div>
+  </form>
+  <form method="POST" action ="/edit/lastname">
+  {% csrf_token %}
+    <div class="py-3 border-bottom border-primary">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <h3 class="">Last Name:</h3>
+          </div>
+          <div class="col-md-3">
+            <h4 class="">{{lname}}</h4>
+          </div>
+          
+            <div class="col-md-3">
+            <div class="form-group"><input type="text" name="lname" class="form-control" placeholder="Edit Last Name:"></div>
+            </div>
+            <div class="col-md-3"><input type = "submit" value = "Edit" class="btn btn-primary"></div>
+          
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h3 class="">Email:</h3>
+        </div>
+        <div class="col-md-6">
+          <h5 class="">{{email}}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <form method="POST" action ="/edit/password">
+  {% csrf_token %}
+    <div class="py-3 border-primary border-top" style="">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <h3 class="">Password:</h3>
+          </div>
+         
+            <div class="col-md-2">
+            <div class="form-group"><input type="password"  name="oldpass"class="form-control bg-info" placeholder="Current Password" style="opacity: 0.5;" required="required"></div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group"><input type="password"  name="newpass1" class="form-control bg-info" placeholder="New Password" style="opacity: 0.5;" required="required"></div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group"><input type="password" name="newpass2" class="form-control bg-info" placeholder="Confirm New Password" style="opacity: 0.5;" required="required"></div>
+          </div>
+          <div class="col-md-2"><input type = "submit" value = "change" class="btn btn-primary" ></div>
+          <div class="col-md-2"></div>
+        </div>
+        <h4 style = "color:red">{{error}}</h4>
+        <h4 style = "color:green">{{success}}</h4>
+      </div>
+      
+    </div>
+    
+  </form>
+  
+  <form action="deleteaccount" method="POST">
+   {% csrf_token %}
+    <div class="py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12"><input type="submit" value="Delete Account" class="btn btn-dark btn-lg"></div>
+          <h4 style = "color:green"> {{delete}} </h4>
+        </div>
+      </div>
+      
+    </div>
+  </form>
+
+{% endblock %}

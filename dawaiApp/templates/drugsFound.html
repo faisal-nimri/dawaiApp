@@ -1,0 +1,23 @@
+{% extends "template.html" %}
+{% block content %}
+
+
+<body style="" class="bg-light">
+  {% for drug in allDrugs %}
+    <div class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 border-right border-primary">
+            <h3 class="">{{drug.name}}</h3>
+          </div>
+          <div class="col-md-3 border-right border-primary">
+            <h3 class="">{{drug.store}}</h3>
+          </div>
+          <div class="col-md-3"></div>
+          <div class="col-md-3 border-primary"><a class="btn btn-primary btn-lg" href="{{drug.location}}">Get Direction.</a></div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}
+

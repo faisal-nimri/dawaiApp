@@ -1,0 +1,39 @@
+{% extends "template.html" %}
+{% block content %}
+
+  <script>
+      function getLocation(){
+        if('geolocation' in navigator){
+          console.log("gelocation is avalable");
+          navigator.geolocation.getCurrentPosition(position => {
+            document.getElementById("latitude").value = position.coords.latitude;
+            document.getElementById("longitude").value = position.coords.longitude;
+          })
+        }
+      }
+    getLocation();
+  </script>
+
+  <div class="pb-5" style="">
+    <div class="container-fluid p-0"> <iframe width="100%" height="300" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d216778.3034336051!2d35.87274027872934!3d31.902222918237417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1586169617705!5m2!1sen!2sus" scrolling="no" frameborder="0" allowfullscreen="" aria-hidden="false" style="border:0;" tabindex="0"></iframe> </div>
+    <div class="container">
+      <div class="row">
+        <div class="mx-auto p-4 col-md-6">
+          <h2 class="mb-4">Find What You Need</h2>
+          <p>Find the medicine, herb, or the vitamine you are searching for just by typing the name, or some description about it.<br>You can locate the nearest drug store for you, from the nearest to farest one for the current location you are in now.</p>
+        </div>
+        <div class="mx-auto p-4 col-md-6">
+          <form action = "/searchdrugs" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="latitude" id="latitude">
+            <input type="hidden" name="longitude" id="longitude">
+            <div class="form-group"> <input type="search" class="form-control" id="form31" placeholder="Drug Name" name="name" required="required"> </div>
+            <div class="form-group"> <textarea class="form-control" id="form32" rows="3" placeholder="Syndromes" name="syndromes"></textarea> </div> 
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

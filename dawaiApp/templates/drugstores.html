@@ -1,0 +1,79 @@
+{% extends "template.html" %}
+{% block content %}
+
+	<script>
+		function getRatings(storeName){
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) 
+					document.getElementById("modalContents").innerHTML = xhttp.responseText;
+			};
+			xhttp.open("GET", "http://127.0.0.1:8000/getratings?pk="+storeName, true);
+			xhttp.send();
+		}
+	</script>
+
+  <div class="modal" id="Rating">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Rating</h5> <button type="button" class="close" data-dismiss="modal"> <span>×</span> </button>
+        </div>
+        <div class="modal-body">
+          <p id="modalContents"></p>
+        </div>
+        <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 p-md-5 p-3 d-flex flex-column justify-content-center">
+          <h1>Search for the nearest drug store.</h1>
+        </div>
+        <div class="col-lg-4 p-3"><img class="img-fluid d-block" src="/static/images/ph1.jpg"></div>
+      </div>
+    </div>
+  </div>
+
+
+{% for store in drugStores%}
+	<div class="py-1">
+		<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+			<div class="card">
+				<div class="card-body">
+				<h5 class="card-title"><b>{{store.name}}</b></h5>
+				<div class="btn-group">
+					<a href="{{store.location}}" class="btn btn-primary">Location!</a> 
+					<button class="btn btn-primary mx-1" data-toggle="modal" data-target="#Rating" onclick="getRatings('{{store.name}}')">View Ratings</button>
+					<div class="btn-group">
+					<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Rate</button>
+					<div class="dropdown-menu">
+						<form class="p-3" action="/rate" method="POST">
+							{% csrf_token %}
+							<input type="hidden" name="pk" value="{{store.pk}}">
+							<div class="form-group">
+								<label for="exampleDropdownFormEmail1">What Do You Think of This Pharmacy</label>
+								<input type="text" class="form-control" name="comment" id="exampleDropdownForm" placeholder="Comment">
+							</div>
+							<div class="form-group">
+								<label for="exampleDropdownFormPassword1">Rating (0-5)</label>
+								<input type="range" class="form-control" name="rating" id="exampleDropdownForm" min="0" max="5">
+							</div>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+					</div>
+				</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends "template.html"%}
+{% block content %}
+
+  <div class="py-1">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2"><a class="btn btn-outline-primary btn-lg btn-block" href="#Search">Seach</a></div>
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+  </div>herboon
+  <div class="text-center pt-3 pb-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="mb-3">Vitamins</h1>
+          <div class="btn-group"> <a href="/products?category=Vitamin" class="btn btn-primary">View More..</a> </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 col-6 p-4"> <img class="img-fluid d-block" src="/static/images/vitamins/v1.jpg" width="1500">
+          <h4 class="mt-3 mb-0">Vitamin A</h4>
+        </div>
+        <div class="col-md-3 col-6 p-4"> <img class="img-fluid d-block" src="/static/images/vitamins/v2.jpg" width="1500">
+          <h4 class="mt-3 mb-0">Vitamin B1</h4>
+        </div>
+        <div class="col-md-3 col-6 p-4"> <img class="img-fluid d-block" src="/static/images/vitamins/v3.jpg" width="1500">
+          <h4 class="mt-3 mb-0">Vitamin B2</h4>
+        </div>
+        <div class="col-md-3 col-6 p-4"> <img class="img-fluid d-block" src="/static/images/vitamins/v4.jpg" width="1500">
+          <h4 class="mt-3 mb-0">Vitamin B3 (Niacin)</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center pt-2 pb-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="mb-3">Herbs</h1>
+          <div class="btn-group"> <a href="/products?category=Herb" class="btn btn-primary">View More..</a> </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 col-6 p-4"> <img class="img-fluid d-block" src="/static/images/herbs/h1.jpg" width="1500">
+          <h4 class="mt-3 mb-0">Basil</h4>
+        </div>
+        <div class="col-md-3 col-6 p-4"> <img class="img-fluid d-block" src="/static/images/herbs/h2.jpg" width="1500">
+          <h4 class="mt-3 mb-0">Catnip</h4>
+        </div>
+        <div class="col-md-3 col-6 p-4"> <img class="img-fluid d-block" src="/static/images/herbs/h3.jpg" width="1500">
+          <h4 class="mt-3 mb-0">Caynne Pepper</h4>
+        </div>
+        <div class="col-md-3 col-6 p-4"> <img class="img-fluid d-block" src="/static/images/herbs/h4.jpg" width="1500">
+          <h4 class="mt-3 mb-0">Chamomile</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center py-3">
+    <div class="container">
+      <div class="row">
+        <div class="mx-auto col-lg-6 col-10" id="Search">
+          <h1>Search For Herbs &amp; Vitamins.</h1>
+          <form class="text-left" action="/products">
+            <div class="form-group"> <label for="form16">What is the problem you are facing?</label> <input type="search" name='problem' class="form-control" id="form16" placeholder="Problem" required="required" > </div>
+            <div class="form-group"> <label for="form17">Purpose of Vitamins or Herbs!</label> <input type="search" name='purpose' class="form-control" id="form17" placeholder="Purpose" required="required"> </div>
+            <button type="submit" class="btn btn-primary btn-block btn-lg" data-toggle="modal" id="openmodal" data-target="#modal">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

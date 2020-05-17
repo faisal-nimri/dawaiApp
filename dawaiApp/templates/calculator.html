@@ -1,0 +1,74 @@
+{% extends "template.html" %}
+{% block content %}
+
+<script>
+  
+  function calculate(){
+    var height = document.getElementById('height').value;
+    var weight = document.getElementById('currentWeight').value;
+  
+    var ideal = 0;
+    if(document.getElementById("m").checked){
+      if (height >= 160)
+        ideal = ( height - 100 ) * 0.9
+
+      else
+        ideal = ( height - 100 )
+    }
+    else if(document.getElementById("f").checked){
+      if (document.getElementById("height").value >= 150)
+        ideal = ( height - 100 ) * 0.9
+
+      else
+        ideal = ( height - 100 )
+    }
+    else { alert("Please specify your gender"); return;}
+    
+    if (ideal > weight)
+      document.getElementById("modalContents").innerHTML = "Ideal Weight: " + ideal +  "KGS<br>" + "you need to gain: " + (ideal - weight) + "KGs"
+    else
+      document.getElementById("modalContents").innerHTML = "Ideal Weight: " + ideal + "KGS<br>" + "you need to lose: " + (weight - ideal) + "KGs"
+    $('#result').modal('show');
+  }
+</script>
+
+
+  <div class="py-2 text-center text-primary bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="p-5 col-lg-6 col-10 mx-auto border">
+          <img class="img-fluid d-block" src="/static/images/weight.png">
+          <h1 class="mb-4">Ideal Weight Calculator.</h1>
+            <div class="form-group">
+              <label>Height (CMs)</label>
+              <input type="number" id="height" class="form-control" required="required" placeholder="Height" value=0>
+            </div>
+            <div class="form-group">
+              <label>Currnet Weight (KGs)</label>
+              <input type="number" id="currentWeight" class="form-control" placeholder="Weight" required="required" value=0>
+            </div>
+            <div class="form-group"><label>Gender</label> </div>
+            <div class="form-check form-check-inline"> <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="gender" value="male" id="m"> Male </label> </div>
+            <div class="form-check form-check-inline"> <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="gender" value="female" id="f"> Female </label> </div>
+            <button onclick="calculate()" class="btn btn-primary">Calculate!</button> 
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="result">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Your Ideal Weight Is:</h5> <button type="button" class="close" data-dismiss="modal"> <span>×</span> </button>
+        </div>
+        <div class="modal-body">
+          <p id="modalContents"></p>
+        </div>
+        <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

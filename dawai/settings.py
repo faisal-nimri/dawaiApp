@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dawaiApp',
-    'django_extensions',
-    'schema_graph'
+    # 'django_extensions',
+    # 'schema_graph'
 ]
 
 MIDDLEWARE = [

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from schema_graph.views import Schema
+#from schema_graph.views import Schema
 
 from . import views
 
@@ -70,6 +70,9 @@ urlpatterns = [
 	path('delete', views.deleteprofile),
 
 	#Send Mail Delete
-	path('deleteaccount', views.senddelete)
+	path('deleteaccount', views.senddelete),
+
+	#download dawai app
+	path('downloadApp', views.dawaidownload)
 ]
-urlpatterns += [path("schema/" , Schema.as_view())]
+#urlpatterns += [path("schema/" , Schema.as_view())]

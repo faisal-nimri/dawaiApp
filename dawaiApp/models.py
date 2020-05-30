@@ -48,12 +48,17 @@ class drugStore(models.Model):
 	contacts = models.TextField(max_length = 1000)
 	rating = models.FloatField(default = 5)
 	noOfRatings = models.IntegerField(default = 1)
+	def __str__(self):
+    		return self.name
 
 
 class drug(models.Model):
 	name = models.CharField(max_length = 50)
 	description = models.TextField(max_length = 100)
-	drugStore = models.ForeignKey('drugStore', on_delete = models.CASCADE)
+	#drugStore = models.ForeignKey('drugStore', on_delete = models.CASCADE)
+	drugStores = models.ManyToManyField("drugStore")
+	def __str__(self):
+    		return self.name
 
 class review(models.Model):
 	body = models.TextField(max_length = 1000)

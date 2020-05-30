@@ -8,7 +8,7 @@ from django.utils import six
 from random import choice
 import re
 from haversine import haversine
-
+#ddd
 def home(request):
 	return render(request, "home.html")
 
@@ -220,13 +220,12 @@ def drugsSearch(request):
 		allDrugs = allDrugs.distinct()
 		userLocation = (float(request.POST["latitude"]), float(request.POST["longitude"]))
 		for drugi in allDrugs:
-			url = drugi.drugStore.location
-			allDrugsList.append({
-				'name': drugi.name,
-				'store': drugi.drugStore.name,
-				'distance': getDistance(url,userLocation),
-				'location': drugi.drugStore.location
-			})
+			for store in drugi.drugStores.all():
+				url = store.location
+				if getDistance(url,userLocation) <= 10:	
+					allDrugsList.append({'name': drugi.name, 'store': store.name, 'distance': getDistance(url,userLocation), 'location': store.location})
+
+		allDrugsList = sorted(allDrugsList, key=lambda k: k['distance']) 
 		return render(request, 'drugsfound.html', {"allDrugs":allDrugsList})
 
 	
@@ -443,3 +442,6 @@ def senddelete(request):
 		return render(request, "profile.html", {"delete":"Please check your email"})
 	else:
 		return redirect("/profile")
+
+def dawaidownload(request):
+	return render(request, "download.html")
